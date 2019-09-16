@@ -53,4 +53,5 @@ void main()
 	cout << fac.GetImage(2).GetID() << endl;
 	cout << fac.GetImage(3).GetID() << endl;
 	cout << fac.GetImage(1).GetID() << endl;
+	cout << fac.GetImage(1).GetID() << endl;
 }
