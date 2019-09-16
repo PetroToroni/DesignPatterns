@@ -1,0 +1,56 @@
+#include <iostream> 
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+using std::vector;
+using std::find;
+
+class A
+{
+	static int ID;
+	int f_ID{ 0 };
+public:
+	A()
+	{
+		f_ID = ++ID;
+	}
+
+	int GetID() const
+	{
+		return f_ID;
+	}
+};
+
+int A::ID = 0;
+
+class Factory
+{
+public:
+	const A& GetImage(int ID)
+	{
+		for (auto iter : f_data)
+		{
+			if (ID == iter->GetID()) {
+				cout << "Item founded ! " << endl;
+				return *iter;
+			}
+		}
+
+		cout << "Item added!";
+		f_data.push_back(new A());
+		return **(--f_data.end());
+	}
+private:
+	vector<A*> f_data;
+};
+
+
+void main()
+{
+	Factory fac;
+	cout << fac.GetImage(1).GetID() << endl;
+	cout << fac.GetImage(2).GetID() << endl;
+	cout << fac.GetImage(3).GetID() << endl;
+	cout << fac.GetImage(1).GetID() << endl;
+}
